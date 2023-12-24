@@ -3,23 +3,27 @@
 .header {
   display: flex;
   justify-content: space-between;
-  //   position: fixed;
-  width: 100vw;
+  position: fixed;
+  background-color: var(--bg-color);
+  width: 90vw;
   box-shadow: rgba(#000000, 0.24) 0px 0px 12px 0px;
-  //   padding: 6px 5%;
+  padding: 6px 5%;
 
   .header_btn_section {
     display: flex;
     gap: 28px;
     width: 341px;
-    button {
+    align-items: center;
+    .header_links {
       border: none;
       outline: none;
       font-size: 18px;
       font-weight: bold;
-      background-color: var(--bg-color);
+      background-color: transparent !important;
       transition: 0.3s all;
       cursor: pointer;
+      color: #000000;
+      text-decoration: none;
       &:hover {
         color: rgb(81, 81, 81);
       }

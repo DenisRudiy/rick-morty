@@ -1,9 +1,9 @@
-import { Header } from "./components/Header";
+import Characters from "./characters";
 
 export default function Home() {
   return (
     <>
-      <Header></Header>
+      <Characters />
     </>
   );
 }
