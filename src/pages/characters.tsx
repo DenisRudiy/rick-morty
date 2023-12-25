@@ -34,16 +34,16 @@ const Characters = ({ characters }: any) => {
             <option value="dog">Dog</option>
           </select>
         </div>
-        {/* {data.map((item, index) => (
-          <img key={index} src={item.image}></img>
-        ))} */}
-        <div className="char_card">
-          <img
-            src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
-            alt=""
-            className="char_image"
-          />
-          <div className="char_info"></div>
+        <div className="chars">
+          {data.map((item, index) => (
+            <div className="char_card">
+              <img src={item.image} alt="" className="char_image" />
+              <div className="char_info">
+                <p className="char_name">{item.name}</p>
+                <p className="char_species">{item.species}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </Main>
