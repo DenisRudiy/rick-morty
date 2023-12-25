@@ -1,7 +1,8 @@
 export function Footer() {
   return (
-    <div>
-      <h2>Footer</h2>
+    <div className="footer">
+      <p>Make with ❤️</p>
+      <p>for the MobProgramming team</p>
     </div>
   );
 }
