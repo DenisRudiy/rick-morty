@@ -3,6 +3,7 @@ import "@/styles/Header.scss";
 import "@/styles/Footer.scss";
 import "@/styles/Main.scss";
 import "@/styles/Characters.scss";
+import "@/styles/CurrCharacter.scss";
 import type { AppProps } from "next/app";
 import Layout from "../../components/Layout";
 

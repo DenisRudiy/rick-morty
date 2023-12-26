@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import Main from "../../components/Main";
 import { Character } from "./interfaces/character.interface";
-import getAllCharacters from "./api/ApiService";
+import { getAllCharacters } from "./api/ApiService";
 import { applyFilters } from "./api/charFiltersService";
+import { useRouter } from "next/router";
 
 const Characters = () => {
   const [data, setData] = useState<Character[]>([]);
@@ -15,6 +16,8 @@ const Characters = () => {
   const [genderFilter, setGenderFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
 
+  const router = useRouter();
+
   const handleFilterChange = () => {
     const filteredFromService = applyFilters(data, speciesFilter, genderFilter, statusFilter);
     setFilteredData(filteredFromService);
@@ -24,6 +27,10 @@ const Characters = () => {
     if (data.length > visibleItems) {
       setVisibleItems((prevVisibleItems) => prevVisibleItems + 8);
     }
+  };
+
+  const getCurrentCharacter = (id: number) => {
+    router.push(`/characters/${id}`);
   };
 
   useEffect(() => {
@@ -105,7 +112,7 @@ const Characters = () => {
           <div className="chars">
             {filteredData.slice(0, visibleItems).map((item, index) => (
               <div className="char_card" key={item.id}>
-                <img src={item.image} alt="" className="char_image" />
+                <img src={item.image} alt="" className="char_image" onClick={() => getCurrentCharacter(item.id)} />
                 <div className="char_info">
                   <p className="char_name">{item.name}</p>
                   <p className="char_species">{item.species}</p>
