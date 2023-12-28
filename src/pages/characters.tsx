@@ -12,6 +12,8 @@ const Characters = () => {
 
   const [filteredData, setFilteredData] = useState(data);
 
+  const [inputValue, setInputValue] = useState("");
+  const [inputData, setInputData] = useState(data);
   const [speciesFilter, setSpeciesFilter] = useState("all");
   const [genderFilter, setGenderFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
@@ -33,6 +35,10 @@ const Characters = () => {
     router.push(`/characters/${id}`);
   };
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
   useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
@@ -50,6 +56,15 @@ const Characters = () => {
     handleFilterChange();
   }, [speciesFilter, genderFilter, statusFilter, data]);
 
+  useEffect(() => {
+    if (inputValue !== "") {
+      const findEls = data.filter((item) => item.name.toLowerCase().startsWith(inputValue.toLowerCase()));
+      setInputData(findEls);
+    } else {
+      setInputData([]);
+    }
+  }, [inputValue]);
+
   return (
     <Main>
       {loading ? (
@@ -61,7 +76,31 @@ const Characters = () => {
         <div className="char_page">
           <img src="./Characters_logo.svg" alt="" className="char_logo" />
           <div className="char_input_fields">
-            <input type="text" className="char_input" placeholder=" Filter by name..." />
+            <div className="char_input_section">
+              <input
+                type="text"
+                className="char_input"
+                placeholder="Filter by name..."
+                value={inputValue}
+                onChange={handleChange}
+              />
+              {inputValue && (
+                <div className="input_result">
+                  {inputData.length > 0 ? (
+                    inputData.map((item, index) => (
+                      <div className="char_card" key={index}>
+                        <button className="input_result_button" onClick={() => getCurrentCharacter(item.id)}>
+                          {item.name}
+                        </button>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="no_results">No results found</div>
+                  )}
+                </div>
+              )}
+            </div>
+
             <select name="species" className="char_select" onChange={(e) => setSpeciesFilter(e.target.value)}>
               <option value="all" className="char_opt">
                 Species
@@ -111,7 +150,7 @@ const Characters = () => {
           </div>
           <div className="chars">
             {filteredData.slice(0, visibleItems).map((item, index) => (
-              <div className="char_card" key={item.id}>
+              <div className="char_card" key={index}>
                 <img src={item.image} alt="" className="char_image" onClick={() => getCurrentCharacter(item.id)} />
                 <div className="char_info">
                   <p className="char_name">{item.name}</p>

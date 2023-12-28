@@ -15,23 +15,55 @@
     flex-direction: row;
     gap: 25px;
     margin-top: 16px;
-    .char_input {
-      background-image: url("../../public/Search_Icon.svg");
-      background-repeat: no-repeat;
-      background-position-y: 13px;
-      background-position-x: 16px;
-      border: none;
-      width: 200px;
-      padding: 16px 16px 16px 40px;
+    .char_input_section {
+      position: relative;
       display: flex;
       align-items: center;
-      border-radius: 8px;
-      border: 1px solid var(--grey, rgba(0, 0, 0, 0.5));
-      font-family: "Karla", sans-serif;
-      font-size: 16px;
-      font-weight: 400;
-      outline: none;
+      justify-content: center;
+      flex-direction: column;
+      .char_input {
+        background-image: url("../../public/Search_Icon.svg");
+        background-repeat: no-repeat;
+        background-position-y: 13px;
+        background-position-x: 16px;
+        border: none;
+        width: 200px;
+        padding: 16px 16px 16px 40px;
+        display: flex;
+        align-items: center;
+        border-radius: 8px;
+        border: 1px solid var(--grey, rgba(0, 0, 0, 0.5));
+        font-family: "Karla", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        outline: none;
+      }
+
+      .input_result {
+        position: absolute;
+        width: 258px;
+        top: 100%;
+        z-index: 1100;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.14), 0px 3px 4px 0px rgba(0, 0, 0, 0.12),
+          0px 1px 5px 0px rgba(0, 0, 0, 0.2);
+
+        .input_result_button {
+          width: 258px;
+          height: 30px;
+          border: none;
+          background-color: white;
+          font-family: "Karla", sans-serif;
+          transition: 0.3s all;
+          padding: 10px 0px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: rgb(207, 206, 206);
+          }
+        }
+      }
     }
+
     .char_select {
       width: 258px;
       font-family: "Karla", sans-serif;
@@ -52,8 +84,8 @@
     gap: 20px;
     margin-top: 60px;
     .char_card {
-      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.14),
-        0px 3px 4px 0px rgba(0, 0, 0, 0.12), 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
+      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.14), 0px 3px 4px 0px rgba(0, 0, 0, 0.12),
+        0px 1px 5px 0px rgba(0, 0, 0, 0.2);
       border-radius: 4px;
       .char_image {
         height: 260px;
@@ -104,11 +136,11 @@
     gap: 10px;
     flex-shrink: 0;
     border-radius: 4px;
-    background: var(#f2f9fe, #f2f9fe);
+    background: #f2f9fe;
     border: none;
     cursor: pointer;
-    box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
-      0px 1px 18px 0px rgba(0, 0, 0, 0.12), 0px 3px 5px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12),
+      0px 3px 5px 0px rgba(0, 0, 0, 0.2);
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -117,8 +149,8 @@
     transition: 0.3s all;
 
     &:hover {
-      box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.24),
-        0px 1px 18px 0px rgba(0, 0, 0, 0.22), 0px 3px 5px 0px rgba(0, 0, 0, 0.2);
+      box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.24), 0px 1px 18px 0px rgba(0, 0, 0, 0.22),
+        0px 3px 5px 0px rgba(0, 0, 0, 0.2);
     }
     &:active {
       transform: translateY(15px);
