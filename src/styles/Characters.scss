@@ -64,7 +64,7 @@
       }
     }
 
-    .char_select {
+    .select {
       width: 258px;
       font-family: "Karla", sans-serif;
       font-size: 16px;
@@ -87,17 +87,19 @@
       box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.14), 0px 3px 4px 0px rgba(0, 0, 0, 0.12),
         0px 1px 5px 0px rgba(0, 0, 0, 0.2);
       border-radius: 4px;
+      transition: 0.3s all;
+      &:hover {
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+      }
+      &:active {
+        transform: translateY(15px);
+      }
       .char_image {
         height: 260px;
         border-radius: 4px 4px 0px 0px;
         cursor: pointer;
         z-index: 100;
         position: relative;
-        transition: 0.3s all;
-
-        &:hover {
-          box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-        }
       }
       .char_info {
         background-color: var(--bg-color);
@@ -126,35 +128,34 @@
       }
     }
   }
+}
+.show_btn {
+  font-family: "Karla", sans-serif;
+  margin-top: 48px;
+  width: 154px;
+  height: 36px;
+  padding: 10px 16px;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background: #f2f9fe;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12),
+    0px 3px 5px 0px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #2196f3;
+  transition: 0.3s all;
 
-  .char_show_btn {
-    font-family: "Karla", sans-serif;
-    margin-top: 48px;
-    width: 154px;
-    height: 36px;
-    padding: 10px 16px;
-    gap: 10px;
-    flex-shrink: 0;
-    border-radius: 4px;
-    background: #f2f9fe;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12),
+  &:hover {
+    box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.24), 0px 1px 18px 0px rgba(0, 0, 0, 0.22),
       0px 3px 5px 0px rgba(0, 0, 0, 0.2);
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    text-transform: uppercase;
-    color: #2196f3;
-    transition: 0.3s all;
-
-    &:hover {
-      box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.24), 0px 1px 18px 0px rgba(0, 0, 0, 0.22),
-        0px 3px 5px 0px rgba(0, 0, 0, 0.2);
-    }
-    &:active {
-      transform: translateY(15px);
-    }
+  }
+  &:active {
+    transform: translateY(15px);
   }
 }
 .preloader {

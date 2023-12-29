@@ -4,6 +4,8 @@ import "@/styles/Footer.scss";
 import "@/styles/Main.scss";
 import "@/styles/Characters.scss";
 import "@/styles/CurrCharacter.scss";
+import "@/styles/Locations.scss";
+import "@/styles/CurrLocation.scss";
 import type { AppProps } from "next/app";
 import Layout from "../../components/Layout";
 

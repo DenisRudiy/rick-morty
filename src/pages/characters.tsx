@@ -2,16 +2,15 @@ import { useEffect, useState } from "react";
 import Main from "../../components/Main";
 import { Character } from "./interfaces/character.interface";
 import { getAllCharacters } from "./api/ApiService";
-import { applyFilters } from "./api/charFiltersService";
+import { applyCharFilters } from "./api/FiltersService";
 import { useRouter } from "next/router";
 
 const Characters = () => {
+  // * variables
   const [data, setData] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
   const [visibleItems, setVisibleItems] = useState(8);
-
   const [filteredData, setFilteredData] = useState(data);
-
   const [inputValue, setInputValue] = useState("");
   const [inputData, setInputData] = useState(data);
   const [speciesFilter, setSpeciesFilter] = useState("all");
@@ -20,25 +19,30 @@ const Characters = () => {
 
   const router = useRouter();
 
+  // * get filtered chars list
   const handleFilterChange = () => {
-    const filteredFromService = applyFilters(data, speciesFilter, genderFilter, statusFilter);
+    const filteredFromService = applyCharFilters(data, speciesFilter, genderFilter, statusFilter);
     setFilteredData(filteredFromService);
   };
 
+  // * show more characters
   const handleShowMore = () => {
     if (data.length > visibleItems) {
       setVisibleItems((prevVisibleItems) => prevVisibleItems + 8);
     }
   };
 
+  // * get current character
   const getCurrentCharacter = (id: number) => {
     router.push(`/characters/${id}`);
   };
 
+  // * get value from input field
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
 
+  // * load data from server
   useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
@@ -52,10 +56,12 @@ const Characters = () => {
     fetchDataFromApi();
   }, []);
 
+  // * call filter function if options is changed
   useEffect(() => {
     handleFilterChange();
   }, [speciesFilter, genderFilter, statusFilter, data]);
 
+  // * sort data by data from input field
   useEffect(() => {
     if (inputValue !== "") {
       const findEls = data.filter((item) => item.name.toLowerCase().startsWith(inputValue.toLowerCase()));
@@ -101,7 +107,7 @@ const Characters = () => {
               )}
             </div>
 
-            <select name="species" className="char_select" onChange={(e) => setSpeciesFilter(e.target.value)}>
+            <select name="species" className="select" onChange={(e) => setSpeciesFilter(e.target.value)}>
               <option value="all" className="char_opt">
                 Species
               </option>
@@ -112,12 +118,7 @@ const Characters = () => {
                 Alien
               </option>
             </select>
-            <select
-              name="pets"
-              id="pet-select"
-              className="char_select"
-              onChange={(e) => setGenderFilter(e.target.value)}
-            >
+            <select name="pets" id="pet-select" className="select" onChange={(e) => setGenderFilter(e.target.value)}>
               <option value="all" className="char_opt">
                 Gender
               </option>
@@ -128,12 +129,7 @@ const Characters = () => {
                 Female
               </option>
             </select>
-            <select
-              name="pets"
-              id="pet-select"
-              className="char_select"
-              onChange={(e) => setStatusFilter(e.target.value)}
-            >
+            <select name="pets" id="pet-select" className="select" onChange={(e) => setStatusFilter(e.target.value)}>
               <option value="all" className="char_opt">
                 Status
               </option>
@@ -159,7 +155,7 @@ const Characters = () => {
               </div>
             ))}
           </div>
-          <button className="char_show_btn" onClick={handleShowMore}>
+          <button className="show_btn" onClick={handleShowMore}>
             Load More
           </button>
         </div>
