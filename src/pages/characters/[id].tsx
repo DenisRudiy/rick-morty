@@ -11,6 +11,14 @@ const CurrentCharacterPage = () => {
   const [loading, setLoading] = useState(true);
   const { id } = router.query;
 
+  // * get location url
+  const getCurrentLocation = (url: string) => {
+    const match = url.match(/\d+$/);
+    const id = match ? parseInt(match[0], 10) : null;
+    router.push(`/location/${id}`);
+  };
+
+  // * load current character
   useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
@@ -66,9 +74,17 @@ const CurrentCharacterPage = () => {
                     <p className="char_stat_title">Type</p>
                     <p className="char_stat_info">{data.type === "" ? "Unknown" : data.type}</p>
                   </div>
-                  <div className="char_stat_item">
-                    <p className="char_stat_title">Location</p>
-                    <p className="char_stat_info">{data.location?.name}</p>
+                  <div
+                    className="char_stat_item_click"
+                    onClick={() => {
+                      getCurrentLocation(data.location?.url);
+                    }}
+                  >
+                    <div className="click_stat">
+                      <p className="char_stat_title">Location</p>
+                      <p className="char_stat_info">{data.location?.name}</p>
+                    </div>
+                    <img src="/arrowOpen.svg" alt="" />
                   </div>
                 </div>
                 <div className="curr_char_more_info">

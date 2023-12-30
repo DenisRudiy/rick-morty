@@ -21,6 +21,11 @@ const CurrentLocationPage = () => {
     setVisibleItems((prevVisibleItems) => prevVisibleItems + 12);
   };
 
+  // * get current character
+  const getCurrentCharacter = (id: number) => {
+    router.push(`/characters/${id}`);
+  };
+
   // * load location
   useEffect(() => {
     const fetchDataFromApi = async () => {
@@ -87,7 +92,7 @@ const CurrentLocationPage = () => {
             <h3 className="loc_data_header">Residents</h3>
             <div className="loc_all_chars">
               {charData.map((item, index) => (
-                <div className="loc_card" key={index}>
+                <div className="loc_card" key={index} onClick={() => getCurrentCharacter(item.id)}>
                   <img src={item.image} alt="" className="loc_image" />
                   <div className="loc_info">
                     <p className="loc_name">{item.name}</p>
