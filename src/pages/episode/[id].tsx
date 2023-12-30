@@ -67,7 +67,7 @@ const CurrentEpisodePage = () => {
       ) : (
         <div className="curr_loc_page">
           <div className="curr_loc_header">
-            <Link className="loc_back_btn" href="/location">
+            <Link className="loc_back_btn" href="/episode">
               <img src="/arrowBack.svg" alt="" />
               Go Back
             </Link>

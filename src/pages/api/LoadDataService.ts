@@ -30,7 +30,7 @@ export const getAllCharactersFromEpisode = async (data: any, visibleItems: numbe
       const characterPromises: Promise<Character>[] = [];
       let countOfCharacters = visibleItems;
       if (data.characters.length < visibleItems) {
-        countOfCharacters = data.residents.length;
+        countOfCharacters = data.characters.length;
       }
       for (let i = 0; i < countOfCharacters; i++) {
         const charPromise = getLocCharacter(data.characters[i]);
