@@ -5,9 +5,10 @@ import { use, useEffect, useState } from "react";
 import { getCurrLocation, getLocCharacter } from "../api/ApiService";
 import { Location } from "../interfaces/locations.interface";
 import { Character } from "../interfaces/character.interface";
+import { getAllCharactersFromLocation } from "../api/LoadDataService";
 
 const CurrentLocationPage = () => {
-  const allCharacters: Character[] = [];
+  // * variables
   const router = useRouter();
   const [data, setData] = useState<Location>(Object);
   const [charData, setCharData] = useState<Character[]>([]);
@@ -15,10 +16,12 @@ const CurrentLocationPage = () => {
   const [visibleItems, setVisibleItems] = useState(12);
   const { id } = router.query;
 
+  // * show more characters
   const handleShowMore = () => {
     setVisibleItems((prevVisibleItems) => prevVisibleItems + 12);
   };
 
+  // * load location
   useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
@@ -33,37 +36,31 @@ const CurrentLocationPage = () => {
     fetchDataFromApi();
   }, [id]);
 
+  // * load characters from location
   useEffect(() => {
-    const getAllCharactersFromLocation = async () => {
+    try {
+      getAllCharactersFromLocation(data, visibleItems, setCharData);
+    } finally {
       setLoading(true);
-      try {
-        if (data.id !== undefined) {
-          const characterPromises = [];
-          let countOfCharacters = visibleItems;
-          if (data.residents.length < visibleItems) {
-            countOfCharacters = data.residents.length;
-          }
-          for (let i = 0; i < countOfCharacters; i++) {
-            const charPromise = getLocCharacter(data.residents[i]);
-            characterPromises.push(charPromise);
-          }
-
-          const characters = await Promise.all(characterPromises);
-          allCharacters.push(...characters);
-          setCharData(allCharacters);
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getAllCharactersFromLocation();
+    }
   }, [data, visibleItems]);
+
+  // * break loading after characters loaded
+  useEffect(() => {
+    try {
+      if (charData.length !== 0) {
+        setTimeout(() => {
+          setLoading(false);
+        }, 100);
+      }
+    } finally {
+    }
+  }, [charData]);
 
   return (
     <Main>
       {loading ? (
-        <div className="curr_loc_page">
+        <div className="curr_loc_page_load">
           <img src="./../Preloader.svg" alt="" className="preloader" />
           <h1>Loading...</h1>
         </div>
