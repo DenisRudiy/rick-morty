@@ -18,13 +18,15 @@
   outline: none;
 }
 
-.locations {
+.locations,
+.episodes {
   display: grid;
   grid-template-columns: 23.2% 23.2% 23.2% 23.2%;
   justify-content: center;
   gap: 20px;
   margin-top: 60px;
-  .loc_card {
+  .loc_card,
+  .ep_card {
     width: 240px;
     height: 128px;
     background-color: #fafafa;
@@ -44,7 +46,8 @@
     &:active {
       transform: translateY(15px);
     }
-    .loc_name {
+    .loc_name,
+    .ep_name {
       font-size: 20px;
       font-style: normal;
       font-weight: 500;
@@ -52,11 +55,22 @@
       letter-spacing: 0.15px;
       margin: 0;
     }
-    .loc_type {
+
+    .loc_type,
+    .ep_date {
       color: var(--grey-text);
       font-size: 14px;
       font-style: normal;
       font-weight: 400;
+      line-height: 21px;
+      letter-spacing: 0.25px;
+      margin: 0;
+    }
+    .ep_episode {
+      text-align: center;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
       line-height: 21px;
       letter-spacing: 0.25px;
       margin: 0;

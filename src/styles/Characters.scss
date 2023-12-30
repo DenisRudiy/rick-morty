@@ -1,6 +1,7 @@
 @import "./globals.scss";
 
-.char_page {
+.char_page,
+.ep_page {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -10,18 +11,21 @@
     max-width: 600px;
     max-height: 200px;
   }
-  .char_input_fields {
+  .char_input_fields,
+  .ep_input_fields {
     display: flex;
     flex-direction: row;
     gap: 25px;
     margin-top: 16px;
-    .char_input_section {
+    .char_input_section,
+    .ep_input_section {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      .char_input {
+      .char_input,
+      .ep_input {
         background-image: url("../../public/Search_Icon.svg");
         background-repeat: no-repeat;
         background-position-y: 13px;
@@ -37,6 +41,10 @@
         font-size: 16px;
         font-weight: 400;
         outline: none;
+      }
+
+      .ep_input {
+        width: 500px;
       }
 
       .input_result {

@@ -5,7 +5,7 @@ import { getAllCharacters } from "./api/ApiService";
 import { applyCharFilters } from "./api/FiltersService";
 import { useRouter } from "next/router";
 
-const Characters = () => {
+const Character = () => {
   // * variables
   const [data, setData] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
@@ -34,7 +34,7 @@ const Characters = () => {
 
   // * get current character
   const getCurrentCharacter = (id: number) => {
-    router.push(`/characters/${id}`);
+    router.push(`/character/${id}`);
   };
 
   // * get value from input field
@@ -164,4 +164,4 @@ const Characters = () => {
   );
 };
 
-export default Characters;
+export default Character;

@@ -42,7 +42,7 @@ const CurrentCharacterPage = () => {
         </div>
       ) : (
         <div className="curr_char_page">
-          <Link className="char_back_btn" href="/characters">
+          <Link className="char_back_btn" href="/character">
             <img src="/arrowBack.svg" alt="" />
             Go Back
           </Link>

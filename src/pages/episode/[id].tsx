@@ -2,15 +2,15 @@ import Main from "../../../components/Main";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { getCurrLocation } from "../api/ApiService";
-import { Location } from "../interfaces/locations.interface";
+import { Episode } from "../interfaces/episode.interafce";
 import { Character } from "../interfaces/character.interface";
-import { getAllCharactersFromLocation } from "../api/LoadDataService";
+import { getCurrEpisode } from "../api/ApiService";
+import { getAllCharactersFromEpisode } from "../api/LoadDataService";
 
-const CurrentLocationPage = () => {
+const CurrentEpisodePage = () => {
   // * variables
   const router = useRouter();
-  const [data, setData] = useState<Location>(Object);
+  const [data, setData] = useState<Episode>(Object);
   const [charData, setCharData] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
   const [visibleItems, setVisibleItems] = useState(12);
@@ -21,17 +21,12 @@ const CurrentLocationPage = () => {
     setVisibleItems((prevVisibleItems) => prevVisibleItems + 12);
   };
 
-  // * get current character
-  const getCurrentCharacter = (id: number) => {
-    router.push(`/character/${id}`);
-  };
-
-  // * load location
+  // * load episode
   useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
         if (id !== undefined) {
-          const result = await getCurrLocation(id);
+          const result = await getCurrEpisode(id);
           setData(result);
         }
       } finally {
@@ -41,10 +36,10 @@ const CurrentLocationPage = () => {
     fetchDataFromApi();
   }, [id]);
 
-  // * load characters from location
+  // * load characters from episode
   useEffect(() => {
     try {
-      getAllCharactersFromLocation(data, visibleItems, setCharData);
+      getAllCharactersFromEpisode(data, visibleItems, setCharData);
     } finally {
       setLoading(true);
     }
@@ -80,19 +75,19 @@ const CurrentLocationPage = () => {
           </div>
           <div className="curr_loc_details">
             <div className="curr_opt_1">
-              <p className="opt_big">Type</p>
-              <p className="opt_small">{data.type}</p>
+              <p className="opt_big">Episode</p>
+              <p className="opt_small">{data.episode}</p>
             </div>
             <div className="curr_opt_2">
-              <p className="opt_big">Dimension</p>
-              <p className="opt_small">{data.dimension}</p>
+              <p className="opt_big">Date</p>
+              <p className="opt_small">{data.air_date}</p>
             </div>
           </div>
           <div className="loc_data">
             <h3 className="loc_data_header">Residents</h3>
             <div className="loc_all_chars">
               {charData.map((item, index) => (
-                <div className="loc_card" key={index} onClick={() => getCurrentCharacter(item.id)}>
+                <div className="loc_card" key={index}>
                   <img src={item.image} alt="" className="loc_image" />
                   <div className="loc_info">
                     <p className="loc_name">{item.name}</p>
@@ -113,4 +108,4 @@ const CurrentLocationPage = () => {
   );
 };
 
-export default CurrentLocationPage;
+export default CurrentEpisodePage;
