@@ -2,7 +2,7 @@ import Main from "../../../components/Main";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { getCurrLocation } from "../api/ApiService";
+import { getCurrData } from "../api/ApiService";
 import { Location } from "../interfaces/locations.interface";
 import { Character } from "../interfaces/character.interface";
 import { getAllCharactersFromLocation } from "../api/LoadDataService";
@@ -31,7 +31,7 @@ const CurrentLocationPage = () => {
     const fetchDataFromApi = async () => {
       try {
         if (id !== undefined) {
-          const result = await getCurrLocation(id);
+          const result = await getCurrData(id, "location");
           setData(result);
         }
       } finally {

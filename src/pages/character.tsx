@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Main from "../../components/Main";
 import { Character } from "./interfaces/character.interface";
-import { getAllCharacters } from "./api/ApiService";
+import { getAllData } from "./api/ApiService";
 import { applyCharFilters } from "./api/FiltersService";
 import { useRouter } from "next/router";
 
@@ -46,7 +46,7 @@ const Character = () => {
   useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
-        const result = await getAllCharacters();
+        const result = await getAllData("character");
         setData(result);
         setFilteredData(result);
       } finally {

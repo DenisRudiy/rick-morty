@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Main from "../../components/Main";
 import { Location } from "./interfaces/locations.interface";
-import { getAllLocations } from "./api/ApiService";
+import { getAllData } from "./api/ApiService";
 import { applyLocFilters } from "./api/FiltersService";
 import { useRouter } from "next/router";
 
@@ -40,7 +40,7 @@ const Location = () => {
   useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
-        const result = await getAllLocations();
+        const result = await getAllData("location");
         setData(result);
         setFilteredData(result);
       } finally {

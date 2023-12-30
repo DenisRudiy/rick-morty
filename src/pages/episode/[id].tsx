@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Episode } from "../interfaces/episode.interafce";
 import { Character } from "../interfaces/character.interface";
-import { getCurrEpisode } from "../api/ApiService";
+import { getCurrData } from "../api/ApiService";
 import { getAllCharactersFromEpisode } from "../api/LoadDataService";
 
 const CurrentEpisodePage = () => {
@@ -21,12 +21,17 @@ const CurrentEpisodePage = () => {
     setVisibleItems((prevVisibleItems) => prevVisibleItems + 12);
   };
 
+  // * get current character
+  const getCurrentCharacter = (id: number) => {
+    router.push(`/character/${id}`);
+  };
+
   // * load episode
   useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
         if (id !== undefined) {
-          const result = await getCurrEpisode(id);
+          const result = await getCurrData(id, "episode");
           setData(result);
         }
       } finally {
@@ -88,7 +93,7 @@ const CurrentEpisodePage = () => {
             <div className="loc_all_chars">
               {charData.map((item, index) => (
                 <div className="loc_card" key={index}>
-                  <img src={item.image} alt="" className="loc_image" />
+                  <img src={item.image} alt="" className="loc_image" onClick={() => getCurrentCharacter(item.id)} />
                   <div className="loc_info">
                     <p className="loc_name">{item.name}</p>
                     <p className="loc_species">{item.species}</p>

@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Main from "../../../components/Main";
 import { Character } from "../interfaces/character.interface";
-import { getCurrCharacter } from "../api/ApiService";
+import { getCurrData } from "../api/ApiService";
 import Link from "next/link";
 
 const CurrentCharacterPage = () => {
@@ -23,7 +23,7 @@ const CurrentCharacterPage = () => {
     const fetchDataFromApi = async () => {
       try {
         if (id !== undefined) {
-          const result = await getCurrCharacter(id);
+          const result = await getCurrData(id, "character");
           setData(result);
         }
       } finally {

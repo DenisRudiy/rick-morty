@@ -1,7 +1,7 @@
 import Main from "../../components/Main";
 import { useEffect, useState } from "react";
 import { Episode } from "./interfaces/episode.interafce";
-import { getAllEpisodes } from "./api/ApiService";
+import { getAllData } from "./api/ApiService";
 import { useRouter } from "next/router";
 
 const Episode = () => {
@@ -30,7 +30,7 @@ const Episode = () => {
   useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
-        const result = await getAllEpisodes();
+        const result = await getAllData("episode");
         setData(result);
         setFilteredData(result);
       } finally {
