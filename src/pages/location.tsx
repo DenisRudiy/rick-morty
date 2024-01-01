@@ -36,6 +36,11 @@ const Location = () => {
     router.push(`/location/${id}`);
   };
 
+  // * get value from input field
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
   // * load data from server
   useEffect(() => {
     const fetchDataFromApi = async () => {
@@ -55,6 +60,16 @@ const Location = () => {
     handleFilterChange();
   }, [typeFilter, dimensionFilter, data]);
 
+  // * sort data by data from input field
+  useEffect(() => {
+    if (inputValue !== "") {
+      const findEls = data.filter((item) => item.name.toLowerCase().startsWith(inputValue.toLowerCase()));
+      setInputData(findEls);
+    } else {
+      setInputData([]);
+    }
+  }, [inputValue]);
+
   return (
     <Main>
       {loading ? (
@@ -67,7 +82,28 @@ const Location = () => {
           <img src="./Locations_logo.svg" alt="" className="char_logo" />
           <div className="char_input_fields">
             <div className="char_input_section">
-              <input type="text" className="loc_input" placeholder="Filter by name..." />
+              <input
+                type="text"
+                className="loc_input"
+                placeholder="Filter by name..."
+                value={inputValue}
+                onChange={handleChange}
+              />
+              {inputValue && (
+                <div className="input_loc_result">
+                  {inputData.length > 0 ? (
+                    inputData.map((item, index) => (
+                      <div className="char_card" key={index}>
+                        <button className="input_result_loc_button" onClick={() => getCurrentLocation(item.id)}>
+                          {item.name}
+                        </button>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="no_results">No results found</div>
+                  )}
+                </div>
+              )}
             </div>
 
             <select name="type" className="select" onChange={(e) => setTypeFilter(e.target.value)}>

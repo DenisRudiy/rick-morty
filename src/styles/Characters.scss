@@ -47,7 +47,9 @@
         width: 500px;
       }
 
-      .input_result {
+      .input_result,
+      .input_loc_result,
+      .input_ep_result {
         position: absolute;
         width: 258px;
         top: 100%;
@@ -55,7 +57,9 @@
         box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.14), 0px 3px 4px 0px rgba(0, 0, 0, 0.12),
           0px 1px 5px 0px rgba(0, 0, 0, 0.2);
 
-        .input_result_button {
+        .input_result_button,
+        .input_result_loc_button,
+        .input_result_ep_button {
           width: 258px;
           height: 30px;
           border: none;
@@ -69,6 +73,19 @@
             background-color: rgb(207, 206, 206);
           }
         }
+        .input_result_loc_button {
+          width: 358px;
+        }
+        .input_result_ep_button {
+          width: 558px;
+        }
+      }
+
+      .input_loc_result {
+        width: 358px;
+      }
+      .input_ep_result {
+        width: 558px;
       }
     }
 
