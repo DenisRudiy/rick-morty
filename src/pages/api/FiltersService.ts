@@ -19,15 +19,15 @@ export const applyCharFilters = (data: Character[], filters: any) => {
   return filtered;
 };
 
-export const applyLocFilters = (data: Location[], typeFilter: string, dimensionFilter: string) => {
+export const applyLocFilters = (data: Location[], filters: any) => {
   let filtered = data;
 
-  if (typeFilter !== "all") {
-    filtered = filtered.filter((item) => item.type === typeFilter);
+  if (filters.type !== "all") {
+    filtered = filtered.filter((item) => item.type === filters.type);
   }
 
-  if (dimensionFilter !== "all") {
-    filtered = filtered.filter((item) => item.dimension === dimensionFilter);
+  if (filters.dimension !== "all") {
+    filtered = filtered.filter((item) => item.dimension === filters.dimension);
   }
 
   return filtered;

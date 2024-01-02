@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 export function Header() {
   const screenWidth = useScreenWidth();
   const [showBurger, setShowBurger] = useState(false);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   // * calc width to show burger
   useEffect(() => {

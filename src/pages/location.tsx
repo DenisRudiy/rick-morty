@@ -4,6 +4,9 @@ import { Location } from "./interfaces/locations.interface";
 import { getAllData } from "./api/ApiService";
 import { applyLocFilters } from "./api/FiltersService";
 import { useRouter } from "next/router";
+import LocationFilters from "../../components/LocationFilters";
+import { useScreenWidth } from "./api/WindowWidthService";
+import LocationModalFilters from "../../components/LocationModalFilters";
 
 const Location = () => {
   // * variables
@@ -13,15 +16,27 @@ const Location = () => {
   const [filteredData, setFilteredData] = useState(data);
   const [inputValue, setInputValue] = useState("");
   const [inputData, setInputData] = useState(data);
-  const [typeFilter, setTypeFilter] = useState("all");
-  const [dimensionFilter, setDimensionFilter] = useState("all");
+  const [showFilterList, setShowFilterList] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [filters, setFilters] = useState({
+    type: "all",
+    dimension: "all",
+  });
 
   const router = useRouter();
+  const screenWidth = useScreenWidth();
 
   // * get filtered locations list
-  const handleFilterChange = () => {
-    const filteredFromService = applyLocFilters(data, typeFilter, dimensionFilter);
-    setFilteredData(filteredFromService);
+  const handleFilterChange = (filterName: string, value: string) => {
+    changeFiltersType(filterName, value);
+  };
+
+  // * change filter type
+  const changeFiltersType = (filterName: string, value: string) => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [filterName]: value,
+    }));
   };
 
   // * show more locations
@@ -57,8 +72,9 @@ const Location = () => {
 
   // * call filter function if options is changed
   useEffect(() => {
-    handleFilterChange();
-  }, [typeFilter, dimensionFilter, data]);
+    const filteredFromService = applyLocFilters(data, filters);
+    setFilteredData(filteredFromService);
+  }, [filters, data]);
 
   // * sort data by data from input field
   useEffect(() => {
@@ -70,6 +86,19 @@ const Location = () => {
     }
   }, [inputValue]);
 
+  // * calc count of visible items + add all-filters button
+  useEffect(() => {
+    if (screenWidth !== null) {
+      if (screenWidth <= 1050) {
+        setShowFilterList(true);
+      } else {
+        setShowFilterList(false);
+      }
+    } else {
+      setShowFilterList(false);
+    }
+  }, [screenWidth]);
+
   return (
     <Main>
       {loading ? (
@@ -79,6 +108,29 @@ const Location = () => {
         </div>
       ) : (
         <div className="char_page">
+          {showModal ? (
+            <div className="modal_body">
+              <div className="modal">
+                <div className="modal_header">
+                  <h2>Filters</h2>
+                  <button
+                    className="close_modal"
+                    onClick={() => {
+                      setShowModal(!showModal);
+                    }}
+                  >
+                    <img src="/Close-modal.svg" alt="" />
+                  </button>
+                </div>
+                <div className="modal_main">
+                  <div className="modal_select_body"></div>
+                  <LocationModalFilters onFilterChange={handleFilterChange}></LocationModalFilters>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <></>
+          )}
           <img src="./Locations_logo.svg" alt="" className="char_logo" />
           <div className="char_input_fields">
             <div className="char_input_section">
@@ -105,62 +157,21 @@ const Location = () => {
                 </div>
               )}
             </div>
-
-            <select name="type" className="select" onChange={(e) => setTypeFilter(e.target.value)}>
-              <option value="all" className="char_opt">
-                Type
-              </option>
-              <option value="Planet" className="char_opt">
-                Planet
-              </option>
-              <option value="Cluster" className="char_opt">
-                Cluster
-              </option>
-              <option value="Space station" className="char_opt">
-                Space station
-              </option>
-              <option value="Microverse" className="char_opt">
-                Microverse
-              </option>
-              <option value="TV" className="char_opt">
-                TV
-              </option>
-              <option value="Resort" className="char_opt">
-                Resort
-              </option>
-              <option value="Fantasy town" className="char_opt">
-                Fantasy town
-              </option>
-              <option value="Dream" className="char_opt">
-                Dream
-              </option>
-            </select>
-            <select name="dimension" className="select" onChange={(e) => setDimensionFilter(e.target.value)}>
-              <option value="all" className="char_opt">
-                Dimension
-              </option>
-              <option value="Dimension C-137" className="char_opt">
-                Dimension C-137
-              </option>
-              <option value="unknown" className="char_opt">
-                unknown
-              </option>
-              <option value="Post-Apocalyptic Dimension" className="char_opt">
-                Post-Apocalyptic Dimension
-              </option>
-              <option value="Replacement Dimension" className="char_opt">
-                Replacement Dimension
-              </option>
-              <option value="Cronenberg Dimension" className="char_opt">
-                Cronenberg Dimension
-              </option>
-              <option value="Fantasy Dimension" className="char_opt">
-                Fantasy Dimension
-              </option>
-              <option value="Dimension 5-126" className="char_opt">
-                Dimension 5-126
-              </option>
-            </select>
+            {showFilterList ? (
+              <div className="select_body">
+                <button
+                  className="adv_filters_btn"
+                  onClick={() => {
+                    setShowModal(!showModal);
+                  }}
+                >
+                  <img src="/Filter-list.svg" alt="" />
+                  Advanced Filters
+                </button>
+              </div>
+            ) : (
+              <LocationFilters onFilterChange={handleFilterChange}></LocationFilters>
+            )}
           </div>
           <div className="locations">
             {filteredData.slice(0, visibleItems).map((item, index) => (

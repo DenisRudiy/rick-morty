@@ -77,10 +77,12 @@ const CurrentCharacterPage = () => {
         </div>
       ) : (
         <div className="curr_char_page">
-          <Link className="char_back_btn" href="/character">
-            <img src="/arrowBack.svg" alt="" />
-            Go Back
-          </Link>
+          <div className="curr_char_page_back_btn">
+            <Link className="char_back_btn" href="/character">
+              <img src="/arrowBack.svg" alt="" />
+              Go Back
+            </Link>
+          </div>
           <div className="curr_char_info">
             <img src={data.image} alt="" className="char_image" />
             <div className="curr_char_details">
