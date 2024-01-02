@@ -1,35 +1,100 @@
 @import "./globals.scss";
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  position: fixed;
-  background-color: var(--bg-color);
-  width: 90vw;
-  box-shadow: rgba(#000000, 0.24) 0px 0px 12px 0px;
-  padding: 6px 5%;
-  z-index: 1500;
-
-  .header_btn_section {
+.header_body {
+  .header {
     display: flex;
-    gap: 28px;
-    width: 341px;
-    align-items: center;
-    .header_links {
-      border: none;
-      outline: none;
-      font-size: 18px;
-      font-weight: bold;
-      background-color: transparent !important;
-      transition: 0.3s all;
-      cursor: pointer;
-      color: #000000;
-      text-decoration: none;
-      &:hover {
-        color: rgb(81, 81, 81);
+    justify-content: space-between;
+    position: fixed;
+    background-color: var(--bg-color);
+    width: 90vw;
+    box-shadow: rgba(#000000, 0.24) 0px 0px 12px 0px;
+    padding: 6px 5%;
+    z-index: 1500;
+
+    .header_btn_section {
+      display: flex;
+      gap: 28px;
+      width: 341px;
+      align-items: center;
+      .header_links {
+        border: none;
+        outline: none;
+        font-size: 18px;
+        font-weight: bold;
+        background-color: transparent !important;
+        transition: 0.3s all;
+        cursor: pointer;
+        color: #000000;
+        text-decoration: none;
+        &:hover {
+          color: rgb(81, 81, 81);
+        }
+        &:active {
+          transform: translateY(15px);
+        }
       }
-      &:active {
-        transform: translateY(15px);
+    }
+    .header_burger {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .header_button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        border: none;
+        border-radius: 50%;
+        outline: none;
+        cursor: pointer;
+        background-color: white;
+        padding: 15px;
+        transition: 0.3s all;
+
+        &:hover {
+          background-color: rgb(224, 224, 224);
+        }
+        &:active {
+          transform: translateY(15px);
+        }
+      }
+    }
+  }
+}
+
+.header_body.modalOpen {
+  height: 100vh;
+  width: 100vw;
+  .burger_modal {
+    height: 100vh;
+    width: 100vw;
+
+    .header_burger_section {
+      padding-top: 109px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 48px;
+
+      .header_links {
+        color: #000;
+        text-align: center;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        transition: 0.3s all;
+        cursor: pointer;
+        color: #000000;
+        text-decoration: none;
+        &:hover {
+          color: rgb(81, 81, 81);
+        }
+        &:active {
+          transform: translateY(15px);
+        }
       }
     }
   }

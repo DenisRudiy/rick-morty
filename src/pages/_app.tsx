@@ -6,6 +6,9 @@ import "@/styles/Characters.scss";
 import "@/styles/CurrCharacter.scss";
 import "@/styles/Locations.scss";
 import "@/styles/CurrLocation.scss";
+import "@/styles/MediaAdaptation.scss";
+import "@/styles/ModalWindow.scss";
+import "@/styles/UserFilters.scss";
 import type { AppProps } from "next/app";
 import Layout from "../../components/Layout";
 

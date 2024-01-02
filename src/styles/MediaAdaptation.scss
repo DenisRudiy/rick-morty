@@ -1,0 +1,38 @@
+@media only screen and (min-width: 850px) and (max-width: 1150px) {
+  .char_page {
+    .chars {
+      display: grid;
+      grid-template-columns: 31% 31% 31%;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 60px;
+    }
+  }
+}
+
+@media only screen and (min-width: 650px) and (max-width: 850px) {
+  .char_page {
+    .chars {
+      display: grid;
+      grid-template-columns: 46% 46%;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 60px;
+    }
+  }
+}
+
+@media only screen and (min-width: 300px) and (max-width: 650px) {
+  .char_page {
+    .char_input_fields {
+      flex-direction: column;
+    }
+    .chars {
+      display: grid;
+      grid-template-columns: 92.5%;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 60px;
+    }
+  }
+}

@@ -1,24 +1,19 @@
 import { Character } from "../interfaces/character.interface";
 import { Location } from "../interfaces/locations.interface";
 
-export const applyCharFilters = (
-  data: Character[],
-  speciesFilter: string,
-  genderFilter: string,
-  statusFilter: string
-) => {
+export const applyCharFilters = (data: Character[], filters: any) => {
   let filtered = data;
 
-  if (speciesFilter !== "all") {
-    filtered = filtered.filter((item) => item.species === speciesFilter);
+  if (filters.species !== "all") {
+    filtered = filtered.filter((item) => item.species === filters.species);
   }
 
-  if (genderFilter !== "all") {
-    filtered = filtered.filter((item) => item.gender === genderFilter);
+  if (filters.gender !== "all") {
+    filtered = filtered.filter((item) => item.gender === filters.gender);
   }
 
-  if (statusFilter !== "all") {
-    filtered = filtered.filter((item) => item.status === statusFilter);
+  if (filters.status !== "all") {
+    filtered = filtered.filter((item) => item.status === filters.status);
   }
 
   return filtered;

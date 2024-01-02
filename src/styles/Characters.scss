@@ -10,6 +10,9 @@
   .char_logo {
     max-width: 600px;
     max-height: 200px;
+    width: 25vw;
+    min-width: 312px;
+    min-height: 104px;
   }
   .char_input_fields,
   .ep_input_fields {
@@ -87,18 +90,6 @@
       .input_ep_result {
         width: 558px;
       }
-    }
-
-    .select {
-      width: 258px;
-      font-family: "Karla", sans-serif;
-      font-size: 16px;
-      font-weight: 400;
-      outline: none;
-      border-radius: 8px;
-      border: 1px solid var(--grey, rgba(0, 0, 0, 0.5));
-      color: var(--grey-text);
-      padding: 0px 14px;
     }
   }
 
