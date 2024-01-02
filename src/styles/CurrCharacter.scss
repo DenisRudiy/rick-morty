@@ -48,22 +48,32 @@
       .curr_char_more_info {
         display: flex;
         justify-content: center;
-        align-items: center;
         gap: 36px;
 
         .curr_char_stat {
           h3 {
             color: #8e8e93;
             font-size: 20px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            align-items: center;
+            width: 413px;
           }
           .char_stat_item,
           .char_stat_item_click {
-            border-bottom: 1px black solid;
+            border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
             width: 413px;
+            height: 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
 
             .char_stat_title {
               font-size: 16px;
               font-weight: 700;
+              margin: 0;
             }
             .char_stat_info {
               color: #6e798c;
@@ -72,12 +82,15 @@
               font-weight: 400;
               line-height: 20px;
               letter-spacing: 0.25px;
+              margin: 0;
             }
           }
 
           .char_stat_item_click {
             display: flex;
             justify-content: space-between;
+            flex-direction: row;
+            align-items: center;
             transition: 0.3s all;
             cursor: pointer;
             img {
@@ -89,12 +102,58 @@
             }
           }
         }
-        .curr_char_epis {
-          h3 {
-            color: #8e8e93;
+
+        .curr_char_episodes {
+          .curr_char_stat {
+            .char_ep_body {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              transition: 0.3s all;
+              cursor: pointer;
+              border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
+              img {
+                margin-right: 24px;
+              }
+
+              &:hover {
+                background-color: rgb(240, 240, 240);
+              }
+
+              .char_ep_item {
+                height: 70px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                .char_ep_title {
+                  font-size: 16px;
+                  font-weight: 700;
+                  margin: 0;
+                }
+                .char_ep_info {
+                  color: #6e798c;
+                  font-size: 14px;
+                  font-style: normal;
+                  font-weight: 400;
+                  line-height: 20px;
+                  letter-spacing: 0.25px;
+                  margin: 0;
+                }
+              }
+            }
+          }
+
+          .ep_more {
+            display: flex;
+            justify-content: center;
           }
         }
       }
     }
   }
+}
+
+.arrow {
+  width: 14px;
+  height: 14px;
 }
