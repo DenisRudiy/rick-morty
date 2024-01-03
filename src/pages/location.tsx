@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Main from "../../components/Main";
-import { Location } from "./interfaces/locations.interface";
+import { Location } from "../interfaces/locations.interface";
 import { getAllData } from "./api/ApiService";
 import { applyLocFilters } from "./api/FiltersService";
 import { useRouter } from "next/router";

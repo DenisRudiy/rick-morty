@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { Character } from "../interfaces/character.interface";
+import { Character } from "../../interfaces/character.interface";
 import { getCurrData } from "../api/ApiService";
-import { Episode } from "../interfaces/episode.interafce";
+import { Episode } from "../../interfaces/episode.interafce";
 import Link from "next/link";
 import Main from "../../../components/Main";
 import { getAllEpisodesFromCharacter } from "../api/LoadDataService";

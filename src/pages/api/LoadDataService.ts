@@ -1,5 +1,5 @@
-import { Character } from "../interfaces/character.interface";
-import { Episode } from "../interfaces/episode.interafce";
+import { Character } from "../../interfaces/character.interface";
+import { Episode } from "../../interfaces/episode.interafce";
 import { getLocCharacter } from "./ApiService";
 
 export const getAllCharactersFromLocation = async (

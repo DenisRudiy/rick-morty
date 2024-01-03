@@ -3,8 +3,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { getCurrData } from "../api/ApiService";
-import { Location } from "../interfaces/locations.interface";
-import { Character } from "../interfaces/character.interface";
+import { Location } from "../../interfaces/locations.interface";
+import { Character } from "../../interfaces/character.interface";
 import { getAllCharactersFromLocation } from "../api/LoadDataService";
 
 const CurrentLocationPage = () => {

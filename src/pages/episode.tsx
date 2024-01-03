@@ -1,6 +1,6 @@
 import Main from "../../components/Main";
 import { useEffect, useState } from "react";
-import { Episode } from "./interfaces/episode.interafce";
+import { Episode } from "../interfaces/episode.interafce";
 import { getAllData } from "./api/ApiService";
 import { useRouter } from "next/router";
 

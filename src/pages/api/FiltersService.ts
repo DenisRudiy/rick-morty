@@ -1,5 +1,5 @@
-import { Character } from "../interfaces/character.interface";
-import { Location } from "../interfaces/locations.interface";
+import { Character } from "../../interfaces/character.interface";
+import { Location } from "../../interfaces/locations.interface";
 
 export const applyCharFilters = (data: Character[], filters: any) => {
   let filtered = data;
