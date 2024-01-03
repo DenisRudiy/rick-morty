@@ -3,11 +3,11 @@ import Main from "../../components/Main";
 import { Character } from "./interfaces/character.interface";
 import { getAllData } from "./api/ApiService";
 import { applyCharFilters } from "./api/FiltersService";
-import { useRouter } from "next/router";
 import { useScreenWidth } from "./api/WindowWidthService";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import UserFilters from "../../components/UserFilters";
 import UserModalFilters from "../../components/UserModalFilters";
+import { useRouter } from "next/navigation";
 
 const Character = () => {
   // * variables
