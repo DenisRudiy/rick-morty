@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import LocationFilters from "../../components/LocationFilters";
 import { useScreenWidth } from "./api/WindowWidthService";
 import LocationModalFilters from "../../components/LocationModalFilters";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 const Location = () => {
   // * variables
@@ -98,6 +99,15 @@ const Location = () => {
       setShowFilterList(false);
     }
   }, [screenWidth]);
+
+  // * use body-scroll-lock lib to lock scroll when modal is shown
+  useEffect(() => {
+    if (showModal) {
+      disableBodyScroll(document.body);
+    } else {
+      enableBodyScroll(document.body);
+    }
+  }, [showModal]);
 
   return (
     <Main>

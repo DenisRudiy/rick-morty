@@ -57,6 +57,7 @@ const CurrentLocationPage = () => {
         setTimeout(() => {
           setLoading(false);
         }, 100);
+      } else {
       }
     } finally {
     }

@@ -1,22 +1,44 @@
 @media only screen and (min-width: 850px) and (max-width: 1150px) {
   .char_page {
     .chars {
-      grid-template-columns: 31% 31% 31%;
+      grid-template-columns: 260px 260px 260px;
+    }
+  }
+  .curr_loc_page {
+    width: 80vw;
+    .loc_data {
+      .loc_data_header {
+        width: 820px;
+      }
+      .loc_all_chars {
+        grid-template-columns: 31% 31% 31%;
+      }
     }
   }
 }
 
 @media only screen and (min-width: 800px) and (max-width: 1050px) {
-  .locations {
+  .locations,
+  .episodes {
     grid-template-columns: 31% 31% 31%;
   }
 }
 @media only screen and (min-width: 500px) and (max-width: 800px) {
-  .locations {
+  .locations,
+  .episodes {
     grid-template-columns: 46% 46%;
   }
   .loc_input {
     width: 200px;
+  }
+  .ep_page {
+    .ep_input_fields {
+      .ep_input_section {
+        .ep_input {
+          width: 432px;
+        }
+      }
+    }
   }
 }
 
@@ -37,7 +59,18 @@
 @media only screen and (min-width: 650px) and (max-width: 850px) {
   .char_page {
     .chars {
-      grid-template-columns: 46% 46%;
+      grid-template-columns: 260px 260px;
+    }
+  }
+  .curr_loc_page {
+    width: 80vw;
+    .loc_data {
+      .loc_data_header {
+        width: 540px;
+      }
+      .loc_all_chars {
+        grid-template-columns: 46% 46%;
+      }
     }
   }
 }
@@ -48,17 +81,47 @@
       flex-direction: column;
     }
     .chars {
-      grid-template-columns: 92.5%;
+      grid-template-columns: 260px;
+    }
+  }
+
+  .curr_loc_page {
+    width: 80vw;
+
+    .curr_loc_details {
+      .curr_opt_2 {
+        margin-left: 84px;
+      }
+    }
+    .loc_data {
+      .loc_data_header {
+        width: 260px;
+      }
+      .loc_all_chars {
+        grid-template-columns: 92.5%;
+      }
     }
   }
 }
 
 @media only screen and (min-width: 300px) and (max-width: 525px) {
-  .locations {
+  .locations,
+  .episodes {
     grid-template-columns: 100%;
   }
   .loc_input {
     width: 200px;
+  }
+
+  .ep_page {
+    .ep_input_fields {
+      .ep_input_section {
+        .ep_input {
+          width: 192px;
+          font-size: 14px;
+        }
+      }
+    }
   }
 }
 
@@ -101,5 +164,8 @@
         }
       }
     }
+  }
+  .footer {
+    text-align: center;
   }
 }

@@ -13,7 +13,7 @@ const Character = () => {
   // * variables
   const [data, setData] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
-  const [visibleItems, setVisibleItems] = useState(8);
+  const [visibleItems, setVisibleItems] = useState(12);
   const [filteredData, setFilteredData] = useState(data);
   const [inputValue, setInputValue] = useState("");
   const [inputData, setInputData] = useState(data);
@@ -24,7 +24,6 @@ const Character = () => {
   });
   const [showFilterList, setShowFilterList] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [countOfAddItems, setCountOfAddItems] = useState(8);
 
   const router = useRouter();
   const screenWidth = useScreenWidth();
@@ -45,7 +44,7 @@ const Character = () => {
   // * show more characters
   const handleShowMore = () => {
     if (data.length > visibleItems) {
-      setVisibleItems((prevVisibleItems) => prevVisibleItems + countOfAddItems);
+      setVisibleItems((prevVisibleItems) => prevVisibleItems + 12);
     }
   };
 
@@ -93,10 +92,6 @@ const Character = () => {
   useEffect(() => {
     if (screenWidth !== null) {
       setShowFilterList(true);
-      if (screenWidth <= 1150 && screenWidth > 849) {
-        setVisibleItems(visibleItems + visibleItems / 8);
-        setCountOfAddItems(9);
-      }
     } else {
       setShowFilterList(false);
     }
